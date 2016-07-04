@@ -1,3 +1,5 @@
 git init :把这个目录变成Git可以管理的仓库（repository）
-git add [filename] :把这个文件添加到仓库
+git add <filename> :把这个文件添加到仓库
 git commit -m "some info" :把文件提交到仓库，并添加相关信息
+git status :仓库当前状态，显示哪些文件修改了
+git diff :查看做了哪些修改
