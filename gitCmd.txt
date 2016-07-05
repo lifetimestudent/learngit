@@ -1,3 +1,5 @@
+教程网址：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+
 git init :把这个目录变成Git可以管理的仓库（repository）
 git add <filename> :把这个文件添加到仓库（每次修改文件后都要添加一次文件，然后commit）
 git commit -m "some info" :把文件提交到仓库，并添加相关信息
@@ -22,6 +24,25 @@ git reset HEAD <file> :如果修改了文件，并且已经add到了暂存区，
 删除文件：
 git rm <file> :在文件管理器中删除文件后，还需要在版本库中删除版本，使用该命令删除版本库中的版本，该命令之后还需要使用git commit命令提交
 git checkout -- <file> :如果在文件管理器中不小心删除了文件，可以使用该命令从版本库中恢复文件。（但在工作区修改但未提交的文件无法恢复。）
+
+远程仓库：
+需要将本地仓库和远程仓库关联，这里以github为远程仓库为例，首先需要创建SSH Key，并添加到github上，使得本地向github推送。步骤如下：
+步骤一：在git命令行输入如下命令> ssh-keygen -t rsa -C "<youremail@example.com>",一路回车，查看主目录下是否有.ssh目录。当然如果本来就存在.ssh目录，则这一步可以跳过。
+步骤二：登陆GitHub，打开“Account settings”，“SSH Keys”页面，将.ssh文件夹下id_rsa.pub的内容添加到SSH Key列表中。
+经过以上步骤，就可以保证本地和github可以正常通信了。下面是两种用法：
+
+1.将本地库和远程库关联，并向远程库推送
+你创建了一个本地仓库，现在你想把本地仓库推送到远程仓库并和远程仓库同步
+步骤一：在github上创建一个仓库，并命名,假设为learngit
+步骤二：使用> git remote add origin git@github.com:youremail/learngit.git
+步骤三：推送本地仓库到github，使用命令>git push -u origin master，参数-u可以让远程仓库和本地仓库关联（第一次用，以后不需要）。
+以后只要本地提交了修改，就可以使用>git push origin master推送到远程仓库。
+
+2.
+
+
+
+
 
 
 
