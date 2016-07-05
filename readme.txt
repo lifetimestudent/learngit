@@ -13,4 +13,4 @@
 
 这句话是在Dev分支上添加的，确定回到master分支上后是否还在
 
-Creating a new branch is quick & simple.
+Creating a new branch is quick and simple.
