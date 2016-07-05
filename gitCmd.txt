@@ -59,8 +59,50 @@ git log --graph ：该命令可以看到分支合并图
 一般不再master分支上工作，大家都在自己的分支上工作，并不断提交代码到一个公共的工作分支dev上，需要发布版本时才由dev分支commit到master上。
 git merge --no-ff -m "merge with no-ff" <branch> :不使用Fast forward方式合并，保留了合并信息。（不是很懂）
 
+4.bug分支
+修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；哪里出现bug就从哪里创建分支。
+当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+git stash ：需要离开当前工作现场，但是目前的工作不能上传，则使用该命令在不上传的基础上保存工作现场，之后可以恢复
+git stash pop ：恢复之前保存的工作现场，并从保存列表中删除恢复的现场。
+git stash list ：列出所有保存的工作现场。。
+git stash apply stash@{0} ：恢复指定的工作现场。
+git stash drop :删除保存的工作现场。
+使用apply恢复则需要手动删除列表中的工作现场，但是使用pop命令，则不需要手动删除。
+
+5.Feature分支
+开发一个新feature，最好新建一个分支；
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+分支合并和bug分支的操作一致。
+
+6.多人协作：
+多人协作的工作模式通常是这样：
+首先，可以试图用git push origin branch-name推送自己的修改；
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+如果合并有冲突，则解决冲突，并在本地提交；
+没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+小结
+查看远程库信息，使用git remote -v；
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+从本地推送分支，使用git push origin <branch-name>，如果推送失败，先用git pull抓取远程的新提交；
+在本地创建和远程分支对应的分支，使用git checkout -b <branch-name> origin/<branch-name>，本地和远程分支的名称最好一致；
+建立本地分支和远程分支的关联，使用git branch --set-upstream <b
+ranch-name> origin/<branch-name>；
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 
 
+标签管理：
+1.创建标签：
+git tag <name> ：在当前分支的当前状态上打上标签
+git tag <name> <commit ID> :在指定的commit ID上打标签
+git tag :查看所打的标签。
+git show <tag name> :查看指定标签的信息
+git tag -a <tag name> -m "some info" <commit id> :创建带说明的标签
+
+2.操作标签
+git tag -d <tag name> :删除指定的标签
 
 
 
